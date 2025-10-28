@@ -1,17 +1,17 @@
 {
-  "name": "@jd/rsbuild-plugin-version-check",
+  "name": "rsbuild-plugin-version-check",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.17.1",
   "description": "Automatic version update detection for Rsbuild + Vue 3 applications",
-  "author": "JD",
+  "author": "",
   "license": "MIT",
-  "homepage": "https://github.com/your-org/check-version#readme",
+  "homepage": "https://github.com/chengkai48/check-version#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-org/check-version.git"
+    "url": "git+https://github.com/chengkai48/check-version.git"
   },
-  "bugs": "https://github.com/your-org/check-version/issues",
+  "bugs": "https://github.com/chengkai48/check-version/issues",
   "keywords": [
     "rsbuild",
     "rsbuild-plugin",

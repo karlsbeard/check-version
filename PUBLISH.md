@@ -29,7 +29,7 @@ pnpm build
 pnpm link --global
 
 # 在你的项目中
-pnpm link --global @jd/rsbuild-plugin-version-check
+pnpm link --global rsbuild-plugin-version-check
 ```
 
 ### 4. 发布到 npm
@@ -59,7 +59,7 @@ npm publish
 ### 安装
 
 ```bash
-pnpm add @jd/rsbuild-plugin-version-check
+pnpm add rsbuild-plugin-version-check
 ```
 
 ### 配置
@@ -68,7 +68,8 @@ pnpm add @jd/rsbuild-plugin-version-check
 
 ```typescript
 // rsbuild.config.ts
-import { rsbuildVersionPlugin } from '@jd/rsbuild-plugin-version-check'
+import { defineConfig } from '@rsbuild/core'
+import { rsbuildVersionPlugin } from 'rsbuild-plugin-version-check'
 
 export default defineConfig({
   plugins: [
@@ -81,7 +82,7 @@ export default defineConfig({
 
 ```typescript
 // main.ts
-import { createVersionCheck } from '@jd/rsbuild-plugin-version-check/vue'
+import { createVersionCheck } from 'rsbuild-plugin-version-check/vue'
 
 app.use(createVersionCheck({
   onUpdateAvailable: ({ latestVersion }) => {
@@ -92,7 +93,7 @@ app.use(createVersionCheck({
 
 ## 注意事项
 
-1. **包名**: 如果发布到 JD 内部 npm，确保包名为 `@jd/rsbuild-plugin-version-check`
+1. **包名**: 发布到 npm 时使用 `rsbuild-plugin-version-check`
 2. **访问权限**: 首次发布时使用 `--access public` 使包公开可用
 3. **版本管理**: 遵循语义化版本规范（Semantic Versioning）
 4. **测试**: 发布前务必在实际项目中测试

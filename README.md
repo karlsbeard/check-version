@@ -1,9 +1,9 @@
-# @jd/rsbuild-plugin-version-check
+# rsbuild-plugin-version-check
 
 > 自动检测应用版本更新并友好提示用户刷新
 
-[![npm version](https://img.shields.io/npm/v/@jd/rsbuild-plugin-version-check.svg)](https://www.npmjs.com/package/@jd/rsbuild-plugin-version-check)
-[![License](https://img.shields.io/npm/l/@jd/rsbuild-plugin-version-check.svg)](./LICENSE.md)
+[![npm version](https://img.shields.io/npm/v/rsbuild-plugin-version-check.svg)](https://www.npmjs.com/package/rsbuild-plugin-version-check)
+[![License](https://img.shields.io/npm/l/rsbuild-plugin-version-check.svg)](./LICENSE.md)
 
 ## 特性
 
@@ -17,9 +17,9 @@
 ## 安装
 
 ```bash
-pnpm add @jd/rsbuild-plugin-version-check
+pnpm add rsbuild-plugin-version-check
 # or
-npm install @jd/rsbuild-plugin-version-check
+npm install rsbuild-plugin-version-check
 ```
 
 ## 快速开始
@@ -27,9 +27,9 @@ npm install @jd/rsbuild-plugin-version-check
 ### 1. 配置 Rsbuild
 
 ```typescript
-import { rsbuildVersionPlugin } from '@jd/rsbuild-plugin-version-check'
 // rsbuild.config.ts
 import { defineConfig } from '@rsbuild/core'
+import { rsbuildVersionPlugin } from 'rsbuild-plugin-version-check'
 
 export default defineConfig({
   plugins: [
@@ -45,9 +45,9 @@ export default defineConfig({
 #### 方式 A：使用 Vue 插件（推荐）
 
 ```typescript
-import { createVersionCheck } from '@jd/rsbuild-plugin-version-check/vue'
 // src/main.ts
 import { createApp } from 'vue'
+import { createVersionCheck } from 'rsbuild-plugin-version-check/vue'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -68,7 +68,7 @@ app.mount('#app')
 // src/App.vue
 <script setup>
 import { onMounted } from 'vue'
-import { initVersionCheck, initializeVersion } from '@jd/rsbuild-plugin-version-check'
+import { initVersionCheck, initializeVersion } from 'rsbuild-plugin-version-check'
 
 onMounted(async () => {
   await initializeVersion()
@@ -149,7 +149,7 @@ app.use(createVersionCheck({
 ### Composition API
 
 ```typescript
-import { useVersionCheck } from '@jd/rsbuild-plugin-version-check/vue'
+import { useVersionCheck } from 'rsbuild-plugin-version-check/vue'
 
 const versionCheck = useVersionCheck()
 
@@ -168,7 +168,7 @@ import {
   checkForUpdates,
   forceReload,
   getCurrentVersion
-} from '@jd/rsbuild-plugin-version-check'
+} from 'rsbuild-plugin-version-check'
 
 // 强制刷新（清除缓存）
 forceReload()
@@ -185,15 +185,18 @@ const version = getCurrentVersion()
 
 ## 高级用法
 
-### 集成 JDesign 通知
+### 集成 UI 库通知
+
+使用任何你喜欢的 UI 库来展示更新通知：
 
 ```typescript
-import { JdNotification } from '@jd/jdesign-vue'
-import { createVersionCheck, forceReload } from '@jd/rsbuild-plugin-version-check/vue'
+import { createVersionCheck, forceReload } from 'rsbuild-plugin-version-check/vue'
+// 示例：使用你的 UI 库通知组件
+import { notification } from 'your-ui-library'
 
 app.use(createVersionCheck({
   onUpdateAvailable: ({ latestVersion }) => {
-    JdNotification.info({
+    notification.info({
       title: '新版本可用',
       message: `版本 ${latestVersion} 已发布，建议刷新获取最新功能`,
       duration: 0,
@@ -204,10 +207,10 @@ app.use(createVersionCheck({
 }))
 ```
 
-### 集成 Element Plus
+### Element Plus 集成示例
 
 ```typescript
-import { createVersionCheck, forceReload } from '@jd/rsbuild-plugin-version-check/vue'
+import { createVersionCheck, forceReload } from 'rsbuild-plugin-version-check/vue'
 import { ElNotification } from 'element-plus'
 
 app.use(createVersionCheck({
@@ -230,8 +233,8 @@ app.use(createVersionCheck({
 ```vue
 <!-- VersionNotification.vue -->
 <script setup lang="ts">
-import { forceReload, useVersionCheck } from '@jd/rsbuild-plugin-version-check/vue'
 import { onMounted, ref } from 'vue'
+import { forceReload, useVersionCheck } from 'rsbuild-plugin-version-check/vue'
 
 const show = ref(false)
 const version = ref('')
@@ -272,7 +275,7 @@ function close() {
 如果你想完全手动控制：
 
 ```typescript
-import { forceReload, initVersionCheck } from '@jd/rsbuild-plugin-version-check'
+import { forceReload, initVersionCheck } from 'rsbuild-plugin-version-check'
 
 const cleanup = initVersionCheck({
   checkInterval: 5 * 60 * 1000,
