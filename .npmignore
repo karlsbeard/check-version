@@ -1,0 +1,27 @@
+# Source files
+src/
+test/
+*.test.ts
+*.spec.ts
+
+# Config files
+tsconfig.json
+tsup.config.ts
+tsdown.config.ts
+vitest.config.ts
+eslint.config.js
+
+# Dev files
+.vscode/
+.github/
+.git/
+*.log
+*.md
+!README.md
+
+# Build artifacts
+node_modules/
+pnpm-lock.yaml
+
+# Others
+.DS_Store

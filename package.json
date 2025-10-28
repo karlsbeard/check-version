@@ -1,22 +1,38 @@
 {
-  "name": "pkg-placeholder",
+  "name": "@jd/rsbuild-plugin-version-check",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.17.1",
-  "description": "_description_",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "description": "Automatic version update detection for Rsbuild + Vue 3 applications",
+  "author": "JD",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/pkg-placeholder#readme",
+  "homepage": "https://github.com/your-org/check-version#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/pkg-placeholder.git"
+    "url": "git+https://github.com/your-org/check-version.git"
   },
-  "bugs": "https://github.com/antfu/pkg-placeholder/issues",
-  "keywords": [],
+  "bugs": "https://github.com/your-org/check-version/issues",
+  "keywords": [
+    "rsbuild",
+    "rsbuild-plugin",
+    "vue",
+    "vue3",
+    "version",
+    "update",
+    "notification",
+    "auto-update",
+    "version-check"
+  ],
   "sideEffects": false,
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
@@ -26,8 +42,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint",
     "prepublishOnly": "nr build",
     "release": "bumpp",
@@ -36,10 +52,20 @@
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
+  "peerDependencies": {
+    "@rsbuild/core": ">=1.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@antfu/ni": "catalog:cli",
     "@antfu/utils": "catalog:inlined",
+    "@rsbuild/core": "catalog:",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
     "eslint": "catalog:cli",
@@ -47,11 +73,13 @@
     "simple-git-hooks": "catalog:cli",
     "tinyexec": "catalog:testing",
     "tsdown": "catalog:cli",
+    "tsup": "catalog:",
     "tsx": "catalog:cli",
     "typescript": "catalog:cli",
     "vite": "catalog:cli",
     "vitest": "catalog:testing",
     "vitest-package-exports": "catalog:testing",
+    "vue": "catalog:",
     "yaml": "catalog:testing"
   },
   "simple-git-hooks": {

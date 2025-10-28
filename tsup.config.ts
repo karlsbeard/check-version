@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsdown'
+import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: {
@@ -9,4 +9,5 @@ export default defineConfig({
   dts: true,
   clean: true,
   external: ['vue', '@rsbuild/core'],
+  splitting: false,
 })
